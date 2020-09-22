@@ -27,8 +27,6 @@ class App extends Component {
 
     console.log("length", event.target.files.length);
 
-
-
     // for (let i = 0; i < event.target.files.length; i++) {
     //   console.log(event.target.files.length);
     //   console.log("i=", i);
@@ -44,14 +42,7 @@ class App extends Component {
     //   this.setState({ selectedFile: [...this.state.selectedFile, event.target.files[key]] });
     //   console.log(this.state.selectedFile);
     // });
-
-
-
-
-
   };
-
-
 
   // On file upload (click the upload button)
   onFileUpload = () => {
@@ -76,44 +67,26 @@ class App extends Component {
   // File content to be displayed after
   // file upload is complete
   fileData = () => {
-    console.log("load fn ", this.state.selectedFile)
+    console.log("load fn ", this.state.selectedFile);
     let selectedloop = this.state.selectedFile;
-
+    var divEle = [];
     if (this.state.selectedFile) {
       // console.log("selected loop length-", selectedloop.length)
       // let looparray = [];
-
       for (let i = 0; i < selectedloop.length; i++) {
-        console.log("filename", selectedloop[i])
-        // looparray.push(selectedloop[i]);
+        console.log("filename", selectedloop[i]);
+        var createDiv =
+          "<div className='dispfile'>" +
+          i +
+          "</div><div className='dispfile dispfilename'>" +
+          selectedloop[i].name +
+          "</div><div className='dispfile'>::</div>";
 
+        divEle.push(createDiv);
       }
-
-
-      // return (
-      //   <div>
-      //     <div className="dispfile">1</div>
-      //     <div className="dispfile dispfilename ">
-      //       {selectedloop.name}
-      //     </div>
-      //     <div className="dispfile">::</div>
-
-      //   </div>
-      // );
-
-
-
-
     }
-    //else {
-    //   // return (
-    //   //   <div>
-    //   //     <br />
-    //   //     <h4>Choose before Pressing the Upload button</h4>
-    //   //   </div>
-    //   // );
-
-    // }
+    // return divEle;
+    $("#FileNames").append(divEle);
   };
 
   render() {
@@ -137,8 +110,7 @@ class App extends Component {
             />
           </Modal>
         </div>
-
-        {this.fileData()}
+        <div id="FileNames">{this.fileData()}</div>
       </div>
     );
   }
